@@ -53,5 +53,10 @@ namespace Ejercicio1
                 VerSolicitudesPendientes();
             }
         }
+
+        private void FormPrincipal_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
