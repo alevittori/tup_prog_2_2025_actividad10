@@ -28,6 +28,12 @@ namespace Ejercicio1
 
             }
         }
+        protected void VerSolicitudesAAtender()
+        {
+            lsbColaSolicitudesAAtender.Items.Clear();
+            lsbColaSolicitudesAAtender.Items.AddRange(centro.VerDescripcionColaAtencion());
+            
+        }
         public FormPrincipal()
         {
             InitializeComponent();
@@ -56,6 +62,34 @@ namespace Ejercicio1
 
         private void FormPrincipal_Load(object sender, EventArgs e)
         {
+
+        }
+
+        private void lsbVerSolicitudesImportadas_SelectedValueChanged(object sender, EventArgs e)
+        {
+            Solicitud seleccion = lsbVerSolicitudesImportadas.SelectedItem as Solicitud;
+            if (seleccion != null) 
+                lbSolicitudSeleccionada.Text = seleccion.ToString();
+        }
+
+        private void btnConfirmarAtencion_Click(object sender, EventArgs e)
+        {
+            Solicitud seleccion = lsbVerSolicitudesImportadas.SelectedItem as Solicitud;
+
+            if(seleccion != null)
+            {
+                centro.Atender(seleccion);
+                VerSolicitudesPendientes();
+                VerSolicitudesAAtender();
+
+                lsbVerSolicitudesImportadas.SelectedItem = null;
+                lbSolicitudSeleccionada.Text = "selecciones un registro";
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar ua solicitud");
+            }
+
 
         }
     }
